@@ -10,7 +10,7 @@
 		<param-value>
 			/spring/spring.xml;
 			/spring/spring-mybatis.xml;
-			/spring/spring-job.xml;
+			<!-- /spring/spring-job.xml; -->
 		</param-value>
 	</context-param>
 

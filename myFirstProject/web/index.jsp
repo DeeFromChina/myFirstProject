@@ -55,7 +55,7 @@
 			}
 		}else{
 			var timestamp = Date.parse(new Date()); 
-			document.location = "autojsp/common/leftMeum.jsp?a="+timestamp;
+			document.location = "jsp/video/video.jsp?a="+timestamp;
 		}
 	}
 </script>
