@@ -1,13 +1,16 @@
-package com.sam.util;
+package com.sam.util.common;
 
 import java.lang.reflect.Method;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
-import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 
 public class BaseUtil {
+	
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat ymd = new SimpleDateFormat("yyyy年MM月dd日");
+	private SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
 
 	public static String returnString(Object object) {
 		try {
@@ -17,11 +20,45 @@ public class BaseUtil {
 		}
 	}
 	
-	public static void addTimeToTable(Hashtable<String, Object> src, boolean newOrUpd) {
-		
+	public static Integer returnInt(Object obj){
+		try {
+			if(obj != null){
+				return Integer.valueOf(obj.toString());
+			}
+		} catch (Exception e) {}
+		return 0;
+	}
+
+	public static Double returnDouble(Object obj){
+		try {
+			if(obj != null){
+				return Double.valueOf(obj.toString());
+			}
+		} catch (Exception e) {}
+		return 0D;
 	}
 	
-	public static void tableToObject(Object target, Hashtable src)
+	public String returnDateType(Object obj, String type){
+		try {
+			if(obj != null){
+				if("yyyy-MM-dd".equalsIgnoreCase(type)){
+					return sdf.format(obj);
+				}
+				if("yyyy-MM-dd HH:mm:ss".equalsIgnoreCase(type)){
+					return sdt.format(obj);
+				}
+				if("yyyy年MM月dd日".equalsIgnoreCase(type)){
+					return ymd.format(obj);
+				}
+				if("yyyy年MM月dd日 HH:mm:ss".equalsIgnoreCase(type)){
+					return ymdhms.format(obj);
+				}
+			}
+		} catch (Exception e) {}
+		return null;
+	}
+	
+	public static void mapToObject(Object target, Map src)
 			throws Exception {
 		if (src == null || target == null){
 			target = null;
@@ -50,6 +87,26 @@ public class BaseUtil {
 			}
 		}
 		return;
+	}
+	
+	public void objectToMap(Map target, Object src) throws Exception {
+		if (src == null || target == null)
+			return;
+		Method methods[] = src.getClass().getMethods();
+		for (int i = 0; i < methods.length; i++) {
+			String method = methods[i].getName();
+			if (method.startsWith("get") && !"getClass".equals(method)) {
+				Class type = methods[i].getReturnType();
+				String key = method.replaceFirst("get", "");
+				key = key.substring(0, 1).toLowerCase() + key.substring(1);
+				Object value = methods[i].invoke(src, (Object[]) null);
+				if (value == null)
+					target.put(key, "");
+				else {
+					target.put(key, parseParamenter(type, value));
+				}
+			}
+		}
 	}
 	
 	private static Object parseParamenter(Class type, Object strValue) throws Exception {
@@ -103,26 +160,6 @@ public class BaseUtil {
 		}
 
 		return ret;
-	}
-	
-	public void objectToTable(Hashtable target, Object src) throws Exception {
-		if (src == null || target == null)
-			return;
-		Method methods[] = src.getClass().getMethods();
-		for (int i = 0; i < methods.length; i++) {
-			String method = methods[i].getName();
-			if (method.startsWith("get") && !"getClass".equals(method)) {
-				Class type = methods[i].getReturnType();
-				String key = method.replaceFirst("get", "");
-				key = key.substring(0, 1).toLowerCase() + key.substring(1);
-				Object value = methods[i].invoke(src, (Object[]) null);
-				if (value == null)
-					target.put(key, "");
-				else {
-					target.put(key, parseParamenter(type, value));
-				}
-			}
-		}
 	}
 	
 }

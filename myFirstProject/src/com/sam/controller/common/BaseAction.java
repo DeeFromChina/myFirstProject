@@ -13,19 +13,19 @@ import javax.servlet.http.HttpSession;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import com.sam.util.RedisJava;
 
 public class BaseAction {
 
 	public HttpSession httpSession;
 	
-	public List<Map<String, Object>> homeList = new ArrayList<Map<String, Object>>();
 	public Hashtable<String, Object> form = new Hashtable<String, Object>();
 	public Map<String, Object> redisMap = new HashMap<String, Object>();
 	
 	protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	protected SimpleDateFormat sdt = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	protected SimpleDateFormat ymd = new SimpleDateFormat("yyyy年MM月dd日");
-	protected SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+	protected SimpleDateFormat ymd = new SimpleDateFormat("yyyy/MM/dd");
+	protected SimpleDateFormat ymdhms = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	
 	public static String SUCCESS = "success";
 	public static String ERROR = "error";
@@ -70,27 +70,6 @@ public class BaseAction {
 		RedisJava.openRedis(redisMap);
 	}
 	
-	private void homeData() throws Exception{
-		try{
-			Map<String, Object> detailmap = new HashMap<String, Object>();
-			detailmap.put("identity", "user");
-			detailmap.put("tab1", "面试邀请");
-			detailmap.put("tab2", "我的简历");
-			detailmap.put("tab3", "个人设置");
-			detailmap.put("tab4", "");
-			homeList.add(detailmap);
-			detailmap.clear();
-			detailmap.put("identity", "firm");
-			detailmap.put("tab1", "候选人");
-			detailmap.put("tab2", "已发邀请");
-			detailmap.put("tab3", "企业信息");
-			detailmap.put("tab4", "个人设置");
-			homeList.add(detailmap);
-		}catch(Exception e){
-			e.printStackTrace();
-		}
-	}
-	
 	public String addMessage(String msg){
 		isMsg = true;
 		return msg;
@@ -125,27 +104,6 @@ public class BaseAction {
 	public void putToForm(String record){
 		Hashtable<String, Object> dataForm = JSON.parseObject(record, new TypeReference<Hashtable<String, Object>>(){});
 		form.putAll(dataForm);
-	}
-	
-	public boolean isIntegeter(Object obj){
-		try {
-			Integer.valueOf(obj.toString());
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	public String returnString(Object obj){
-		try {
-			if(obj != null){
-				return obj.toString();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return "";
-		}
-		return "";
 	}
 	
 	public void checkRequired(String... params) throws Exception {
