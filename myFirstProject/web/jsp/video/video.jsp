@@ -8,14 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
-	<!-- <video width="320" height="240" controls>
+	<video width="320" height="240" controls>
 	  <source src="movie.mp4" type="video/mp4">
 	  <source src="movie.ogg" type="video/ogg">
 	  <source src="movie.webm" type="video/webm">
 	  <object data="movie.mp4" width="320" height="240">
-	    <embed src="C:\Users\Public\Videos\Sample Videos\野生动物.wmv" width="320" height="240">
+	    <embed src="http://localhost:8080/myFirstProject/upload/video/Wildlife.wmv" width="320" height="240">
 	  </object> 
-	</video> -->
+	</video>
 	<!-- <video width="320" height="240" controls="controls">
 		浏览器不支持
 		<source src="http://localhost:8080/myFirstProject/upload/video/Wildlife.wmv">
@@ -37,7 +37,7 @@
 	    <embed type="application/x-mplayer2" src="http://localhost:8080/myFirstProject/upload/video/Wildlife.wmv" name="MediaPlayer" autostart="1" showstatusbar="1" showdisplay="1" showcontrols="1" loop="0" videoborder3d="0" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" width="800" height="600"></embed>
 	  </object> -->
 	  
-	  <object id="NSPlay" width=200 height=180 classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject" align="right" hspace="5">
+	  <!-- <object id="NSPlay" width=200 height=180 classid="CLSID:22d6f312-b0f6-11d0-94ab-0080c74c7e95" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,5,715" standby="Loading Microsoft Windows Media Player components..." type="application/x-oleobject" align="right" hspace="5">
 		<param name="AutoRewind" value=1>
 		<param name="FileName" value="http://localhost:8080/myFirstProject/upload/video/Wildlife.wmv">
 		<param name="ShowControls" value="1">
@@ -56,6 +56,6 @@
 		<param name="AllowScan" value="0">
 		<param name="EnableContextMenu" value="0">
 		<param name="ClickToPlay" value="0">
-	</object>
+	</object> -->
 </body>
 </html>

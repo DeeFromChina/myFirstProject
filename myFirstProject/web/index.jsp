@@ -55,7 +55,7 @@
 			}
 		}else{
 			var timestamp = Date.parse(new Date()); 
-			document.location = "jsp/video/video.jsp?a="+timestamp;
+			document.location = "jsp/video/test4.jsp?a="+timestamp;
 		}
 	}
 </script>

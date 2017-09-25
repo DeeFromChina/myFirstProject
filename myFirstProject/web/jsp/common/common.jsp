@@ -21,7 +21,9 @@ response.setHeader("Cache-Control","no-store");
 response.setHeader("Pragrma","no-cache");
 response.setDateHeader("Expires",0);
 %>
+<script src="<%=request.getContextPath() %>/js/common/jquery-3.1.1.min.js"></script>
 <script src="<%=request.getContextPath() %>/js/html5media.min.js"></script>
+<script src="<%=request.getContextPath() %>/js/common/ajaxSubmit.js"></script>
 <%-- <script src="<%=request.getContextPath() %>/js/jquery-3.1.1.min.js?randomId=<%=Math.random()%>" type="text/javascript"></script>
 <script src="<%=request.getContextPath() %>/js/bootstrap.min.js?randomId=<%=Math.random()%>"></script>
 <script src="<%=request.getContextPath() %>/autojs/common/page.js?randomId=<%=Math.random()%>" type="text/javascript"></script>

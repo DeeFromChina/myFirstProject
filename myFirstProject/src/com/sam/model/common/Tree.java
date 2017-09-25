@@ -8,12 +8,15 @@ public class Tree {
 	
 	private String value;
 	
+	//是否显示
 	private String visibility;
 	
 	private String click;
 	
+	//子节点
 	private List<Tree> content;
 	
+	//父节点id
 	private String patherId;
 
 	public String getTitle() {

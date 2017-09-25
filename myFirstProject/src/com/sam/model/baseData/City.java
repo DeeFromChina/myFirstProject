@@ -36,10 +36,10 @@ public class City {
 	private Date updateTime;
 	
 	@Column(name = "remark")
-	private Integer remark;
+	private String remark;
 	
 	@Column(name = "status")
-	private Integer status;
+	private String status;
 
 	public Integer getId() {
 		return id;
@@ -97,19 +97,20 @@ public class City {
 		this.updateTime = updateTime;
 	}
 
-	public Integer getRemark() {
+	public String getRemark() {
 		return remark;
 	}
 
-	public void setRemark(Integer remark) {
+	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-	public Integer getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Integer status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
+
 }

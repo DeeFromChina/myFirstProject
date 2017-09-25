@@ -21,8 +21,7 @@ public class LoginAction extends BaseAction {
 			setMap(request, data);
 			Object forward = null;
 			String action = form.get("action").toString();
-			
-			if("register".equalsIgnoreCase(action)) forward = register();
+//			if("register".equalsIgnoreCase(action)) forward = register();
 			
 			return toJson(forward);
 		} catch (Exception e) {
